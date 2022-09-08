@@ -1,0 +1,73 @@
+.navbar{
+    width: 100%;
+    height: $NAVBAR-HEIGHT;
+    position: relative;
+    background-color: $BACKGROUND-COLOR;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 60px;
+    box-shadow: 0 3px 6px rgba(0,0,0, .25);
+    &__settings{
+        &__button{
+            outline: none;
+            border: none;
+            &__icon{
+                color: $GRAY-COLOR;
+                font-size: 28px;
+                transition: all 0.4s;
+                &.active{
+                    transform: rotate(45deg);
+                }
+            }       
+        }
+        &__dropdown{
+            height: 480px;
+            width: 300px;
+            border-radius: 5px;
+            padding: 32px;
+            position: absolute;
+            background : $BACKGROUND-COLOR;
+            top: 50px;
+            z-index: 1;
+            transition: all 0.4s;
+            visibility: hidden;
+            opacity: 0.2;
+            pointer-events: none;
+            box-shadow: 0 3px 6px rgba(0,0,0, .25);
+            &.active{
+                visibility: visible;
+                pointer-events: all;
+                opacity: 1;
+                top: 70px;
+            }
+            &__width{
+                &__section{
+                    &__text{
+                        background-color: $ELEMENT-COLOR;
+                        box-shadow: 0 3px 6px rgba(0,0,0, .25);
+                    }
+                }
+            }
+        }
+    }
+    &__title{
+        &__text{
+            margin: 0;
+            font-size: 32px;
+            font-weight: 700;
+            color: $WHITE-COLOR;
+            letter-spacing:2px;
+        }
+    }
+    &__actions {
+        color: $GRAY-COLOR;
+        font-size: 28px;
+        display: flex;
+        gap: 30px;
+    }
+    &__button{
+        outline: none;
+        border: none;
+    }
+}

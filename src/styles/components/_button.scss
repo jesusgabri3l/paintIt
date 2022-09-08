@@ -1,0 +1,20 @@
+.button{
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 15px;
+    letter-spacing: 2px;
+    font-weight: 500;
+    &--small{
+        padding: 8px;
+        width: auto;
+    }
+    &--primary{
+        background-color: $PRIMARY-COLOR;
+        color: $WHITE-COLOR;
+    }
+    &--danger{
+        background-color: #d63031;
+        color: $WHITE-COLOR;
+    }
+}
