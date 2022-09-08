@@ -15,10 +15,14 @@
     "react-canvas-draw": "^1.2.1",
     "react-color": "^2.19.3",
     "react-dom": "^18.2.0",
-    "react-toastify": "^9.0.8"
+    "react-redux": "^8.0.2",
+    "react-toastify": "^9.0.8",
+    "redux": "^4.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.15",
+    "@types/react-canvas-draw": "^1.2.0",
+    "@types/react-color": "^3.0.6",
     "@types/react-dom": "^18.0.6",
     "@typescript-eslint/eslint-plugin": "^5.10.2",
     "@typescript-eslint/parser": "^5.10.2",
