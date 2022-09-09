@@ -1,6 +1,19 @@
 import { BlockPicker } from 'react-color';
-
-export default function NavbarSettingsDropdown({ active }: { active: boolean }) {
+import { connect } from 'react-redux';
+interface Props {
+  active: boolean;
+  settings: any;
+  incrementLineWidth: any;
+  decrementLineWidth: any;
+  changeColor: any;
+}
+function NavbarSettingsDropdown({
+  active,
+  settings,
+  incrementLineWidth,
+  decrementLineWidth,
+  changeColor,
+}: Props) {
   return (
     <div className={`navbar__settings__dropdown ${active && 'active'}`}>
       <div className="navbar__settings__dropdown__width">
@@ -8,11 +21,21 @@ export default function NavbarSettingsDropdown({ active }: { active: boolean }) 
           Border width
         </p>
         <div className="navbar__settings__dropdown__width__section flex justify-between items-center mt-2">
-          <button className="button button--primary button--small">-</button>
+          <button
+            className="button button--primary button--small"
+            onClick={() => decrementLineWidth()}
+          >
+            -
+          </button>
           <p className="navbar__settings__dropdown__width__section__text w-full text-center text-2xl text-white text-bold rounded">
-            5
+            {settings.lineWidth}
           </p>
-          <button className="button button--primary button--small">+</button>
+          <button
+            className="button button--primary button--small"
+            onClick={() => incrementLineWidth()}
+          >
+            +
+          </button>
         </div>
       </div>
       <div className="navbar__settings__dropdown__color mt-6">
@@ -20,14 +43,46 @@ export default function NavbarSettingsDropdown({ active }: { active: boolean }) 
           Color
         </p>
         <div className="flex justify-center items-center mt-4">
-          <BlockPicker />
+          <BlockPicker
+            color={settings.color}
+            onChangeComplete={(color) => changeColor(color.hex)}
+          />
         </div>
       </div>
       <hr className="mt-6 mb-6" />
-      <button className="button button--danger">
+      <button className="button button--primary">
+        <i className="fa fa-eraser mr-2" />
+        Upload an image
+      </button>
+      <button className="button button--danger mt-4">
         <i className="fa fa-eraser mr-2" />
         Clean canvas
       </button>
     </div>
   );
 }
+
+const mapStateToProps = (state: any) => ({
+  settings: state,
+});
+
+const mapDispatchToProps = (dispatch: any) => ({
+  incrementLineWidth() {
+    dispatch({
+      type: 'INCREMENT_LINEWIDTH',
+    });
+  },
+  decrementLineWidth() {
+    dispatch({
+      type: 'DECREMENT_LINEWIDTH',
+    });
+  },
+  changeColor(color: string) {
+    dispatch({
+      type: 'CHANGE_COLOR',
+      color,
+    });
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavbarSettingsDropdown);

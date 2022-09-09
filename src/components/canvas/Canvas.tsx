@@ -1,7 +1,8 @@
 import { createRef, useEffect, useState } from 'react';
 import CanvasDraw from 'react-canvas-draw';
+import { connect } from 'react-redux';
 
-export default function Canvas() {
+function Canvas({ settings }: { settings: any }) {
   const [height, setHeight] = useState(window.innerHeight - 80);
   const [width, setWidth] = useState(window.innerWidth);
   const canvas = createRef<CanvasDraw>();
@@ -18,8 +19,16 @@ export default function Canvas() {
         canvasWidth={width}
         canvasHeight={height}
         lazyRadius={1}
+        brushColor={settings.color}
         gridColor="rgba(150,150,150,0.2)"
+        catenaryColor={settings.color}
+        brushRadius={settings.lineWidth}
       />
     </div>
   );
 }
+
+const mapStateToProps = (state: any) => ({
+  settings: state,
+});
+export default connect(mapStateToProps, {})(Canvas);
