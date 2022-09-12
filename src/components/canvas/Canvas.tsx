@@ -9,15 +9,30 @@ import { useCanvasSize } from './useCanvasSize';
 function Canvas({ settings, canvasStore, saveCanvas }: Props) {
   const { height, width } = useCanvasSize();
   const canvasRef = createRef<CanvasDraw>();
-  const { downloadCanvasAction, saveCanvasAction, sourceSaved } = useCanvasActions();
+  const { downloadCanvasAction, saveCanvasAction, dataSaved } = useCanvasActions(
+    canvasStore.name,
+  );
 
   const canvasOnChange = () => saveCanvas(canvasRef.current?.getSaveData());
 
   useEffect(() => {
-    if (canvasStore.action.type === 'undo') canvasRef.current?.undo();
-    if (canvasStore.action.type === 'save') saveCanvasAction(canvasRef);
-    if (canvasStore.action.type === 'download')
-      downloadCanvasAction(canvasRef, canvasStore.name);
+    switch (canvasStore.action.type) {
+      case 'undo':
+        canvasRef.current?.undo();
+        break;
+      case 'save':
+        saveCanvasAction(canvasRef);
+        break;
+      case 'download':
+        downloadCanvasAction(canvasRef);
+        break;
+      case 'clear':
+        canvasRef.current?.clear();
+        saveCanvasAction(canvasRef);
+        break;
+      default:
+        return;
+    }
   }, [canvasStore.action.trigger]);
 
   return (
@@ -32,7 +47,7 @@ function Canvas({ settings, canvasStore, saveCanvas }: Props) {
         catenaryColor={settings.color}
         brushRadius={settings.lineWidth}
         onChange={() => canvasOnChange()}
-        saveData={sourceSaved}
+        saveData={dataSaved}
         immediateLoading
       />
     </div>

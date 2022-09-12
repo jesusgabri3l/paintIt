@@ -1,4 +1,12 @@
-const initState = { source: '', name: 'Paint', action: { type: '', trigger: true } };
+const sourceStorage = localStorage.getItem('canvasSource');
+const sourceSaved = sourceStorage ? JSON.parse(sourceStorage) : null;
+const canvasNameSaved = sourceSaved ? sourceSaved.name : null;
+
+const initState = {
+  source: '',
+  name: canvasNameSaved || 'Paint',
+  action: { type: '', trigger: true },
+};
 
 export default function CanvasReducer(state = initState, action: any) {
   switch (action.type) {
@@ -6,8 +14,8 @@ export default function CanvasReducer(state = initState, action: any) {
       return { ...state, source: action.source };
     case 'SAVE_CANVAS_ACTION':
       return { ...state, action: { type: 'save', trigger: !state.action.trigger } };
-    case 'CLEAN_CANVAS_ACTION':
-      return { ...state, action: { type: 'clean', trigger: !state.action.trigger } };
+    case 'CLEAR_CANVAS_ACTION':
+      return { ...state, action: { type: 'clear', trigger: !state.action.trigger } };
     case 'UNDO_CANVAS_ACTION':
       return { ...state, action: { type: 'undo', trigger: !state.action.trigger } };
     case 'DOWNLOAD_CANVAS_ACTION':

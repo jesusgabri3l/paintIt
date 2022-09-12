@@ -1,7 +1,7 @@
 import { combineReducers, createStore } from 'redux';
 
-import SettingsReducer from './settings/reducer';
 import CanvasReducer from './canvas/reducer';
+import SettingsReducer from './settings/reducer';
 const reducers = combineReducers({
   SettingsReducer,
   CanvasReducer,

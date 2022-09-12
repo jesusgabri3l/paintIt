@@ -7,6 +7,7 @@ interface Props {
   incrementLineWidth: any;
   decrementLineWidth: any;
   changeColor: any;
+  clearAction: any;
 }
 function NavbarSettingsDropdown({
   active,
@@ -14,6 +15,7 @@ function NavbarSettingsDropdown({
   changeColor,
   decrementLineWidth,
   incrementLineWidth,
+  clearAction
 }: Props) {
   return (
     <div className={`navbar__settings__dropdown ${active && 'active'}`}>
@@ -55,7 +57,7 @@ function NavbarSettingsDropdown({
         <i className="fa fa-eraser mr-2" />
         Upload an image
       </button>
-      <button className="button button--danger mt-4">
+      <button className="button button--danger mt-4" onClick={() => clearAction()}>
         <i className="fa fa-eraser mr-2" />
         Clean canvas
       </button>
@@ -82,6 +84,11 @@ const mapDispatchToProps = (dispatch: any) => ({
   incrementLineWidth() {
     dispatch({
       type: 'INCREMENT_LINEWIDTH',
+    });
+  },
+  clearAction() {
+    dispatch({
+      type: 'CLEAR_CANVAS_ACTION',
     });
   },
 });
