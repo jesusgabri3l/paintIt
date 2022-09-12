@@ -1,5 +1,6 @@
 import { BlockPicker } from 'react-color';
 import { connect } from 'react-redux';
+
 interface Props {
   active: boolean;
   settings: any;
@@ -10,9 +11,9 @@ interface Props {
 function NavbarSettingsDropdown({
   active,
   settings,
-  incrementLineWidth,
-  decrementLineWidth,
   changeColor,
+  decrementLineWidth,
+  incrementLineWidth,
 }: Props) {
   return (
     <div className={`navbar__settings__dropdown ${active && 'active'}`}>
@@ -63,13 +64,14 @@ function NavbarSettingsDropdown({
 }
 
 const mapStateToProps = (state: any) => ({
-  settings: state,
+  settings: state.SettingsReducer,
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  incrementLineWidth() {
+  changeColor(color: string) {
     dispatch({
-      type: 'INCREMENT_LINEWIDTH',
+      type: 'CHANGE_COLOR',
+      color,
     });
   },
   decrementLineWidth() {
@@ -77,12 +79,10 @@ const mapDispatchToProps = (dispatch: any) => ({
       type: 'DECREMENT_LINEWIDTH',
     });
   },
-  changeColor(color: string) {
+  incrementLineWidth() {
     dispatch({
-      type: 'CHANGE_COLOR',
-      color,
+      type: 'INCREMENT_LINEWIDTH',
     });
   },
 });
-
 export default connect(mapStateToProps, mapDispatchToProps)(NavbarSettingsDropdown);
