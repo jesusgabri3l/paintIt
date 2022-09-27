@@ -1,13 +1,15 @@
 import './styles/styles.scss';
 
 import Canvas from './components/canvas/Canvas';
-import Navbar from './components/layout/Navbar';
+import ColorsBottom from './components/colors-bottom/ColorsBottom';
+import Navbar from './components/navbar/Navbar';
 
 function App() {
   return (
-    <div className="main-wrapper">
+    <div className="main-wrapper relative">
       <Navbar />
       <Canvas />
+      <ColorsBottom />
     </div>
   );
 }

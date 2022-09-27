@@ -1,22 +1,25 @@
 import { BlockPicker } from 'react-color';
 import { connect } from 'react-redux';
 
+import { useShortcuts } from '../../../shortcuts/useShortcutsSettings';
+import { colors } from '../../shared/colors';
 interface Props {
   active: boolean;
-  settings: any;
-  incrementLineWidth: any;
-  decrementLineWidth: any;
   changeColor: any;
   clearAction: any;
+  decrementLineWidth: any;
+  incrementLineWidth: any;
+  settings: any;
 }
 function NavbarSettingsDropdown({
   active,
-  settings,
   changeColor,
+  clearAction,
   decrementLineWidth,
   incrementLineWidth,
-  clearAction
+  settings,
 }: Props) {
+  useShortcuts({ decrementLineWidth, incrementLineWidth });
   return (
     <div className={`navbar__settings__dropdown ${active && 'active'}`}>
       <div className="navbar__settings__dropdown__width">
@@ -49,14 +52,11 @@ function NavbarSettingsDropdown({
           <BlockPicker
             color={settings.color}
             onChangeComplete={(color) => changeColor(color.hex)}
+            colors={colors}
           />
         </div>
       </div>
       <hr className="mt-6 mb-6" />
-      <button className="button button--primary">
-        <i className="fa fa-eraser mr-2" />
-        Upload an image
-      </button>
       <button className="button button--danger mt-4" onClick={() => clearAction()}>
         <i className="fa fa-eraser mr-2" />
         Clean canvas

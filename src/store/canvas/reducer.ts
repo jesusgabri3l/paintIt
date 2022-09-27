@@ -21,7 +21,7 @@ export default function CanvasReducer(state = initState, action: any) {
     case 'DOWNLOAD_CANVAS_ACTION':
       return { ...state, action: { type: 'download', trigger: !state.action.trigger } };
     case 'CHANGE_NAME':
-      return { ...state, name: action.name };
+      return { ...state, name: action.name || 'Paint' };
   }
   return state;
 }

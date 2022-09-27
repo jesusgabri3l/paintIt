@@ -1,4 +1,5 @@
-const initState = { lineWidth: 1, color: '#000' };
+import { colors } from '../../components/shared/colors';
+const initState = { lineWidth: 1, color: colors[0] };
 
 export default function SettingsReducer(state = initState, action: any) {
   switch (action.type) {

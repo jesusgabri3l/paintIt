@@ -2,18 +2,22 @@ import { createRef, useEffect } from 'react';
 import CanvasDraw from 'react-canvas-draw';
 import { connect } from 'react-redux';
 
-import { Props } from './Props';
-import { useCanvasActions } from './useCanvasActions';
-import { useCanvasSize } from './useCanvasSize';
+import { Props } from './applications/Props';
+import { useCanvasActions } from './applications/useCanvasActions';
+import { useCanvasSize } from './applications/useCanvasSize';
 
-function Canvas({ settings, canvasStore, saveCanvas }: Props) {
+function Canvas({
+  settings,
+  canvasStore,
+  //When on change the canvas
+  saveCanvasSource,
+}: Props) {
   const { height, width } = useCanvasSize();
   const canvasRef = createRef<CanvasDraw>();
   const { downloadCanvasAction, saveCanvasAction, dataSaved } = useCanvasActions(
     canvasStore.name,
   );
-
-  const canvasOnChange = () => saveCanvas(canvasRef.current?.getSaveData());
+  const canvasOnChange = () => saveCanvasSource(canvasRef.current?.getSaveData());
 
   useEffect(() => {
     switch (canvasStore.action.type) {
@@ -43,12 +47,14 @@ function Canvas({ settings, canvasStore, saveCanvas }: Props) {
         canvasHeight={height}
         lazyRadius={1}
         brushColor={settings.color}
-        gridColor="rgba(150,150,150,0.2)"
+        gridColor="rgba(150,150,150, 0.2)"
         catenaryColor={settings.color}
         brushRadius={settings.lineWidth}
         onChange={() => canvasOnChange()}
         saveData={dataSaved}
         immediateLoading
+        enablePanAndZoom
+        mouseZoomFactor={0.5}
       />
     </div>
   );
@@ -59,7 +65,7 @@ const mapStateToProps = (state: any) => ({
   canvasStore: state.CanvasReducer,
 });
 const mapDispatchToProps = (dispatch: any) => ({
-  saveCanvas(source: string) {
+  saveCanvasSource(source: string) {
     dispatch({
       type: 'SAVE_CANVAS_SOURCE',
       source,
