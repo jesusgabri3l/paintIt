@@ -53,8 +53,6 @@ function Canvas({
         onChange={() => canvasOnChange()}
         saveData={dataSaved}
         immediateLoading
-        enablePanAndZoom
-        mouseZoomFactor={0.5}
       />
     </div>
   );

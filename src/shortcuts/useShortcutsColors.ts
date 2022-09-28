@@ -26,7 +26,6 @@ export const useShortcutsColors = ({ changeColor }: any) => {
     });
 
     document.addEventListener('keyup', (e: any) => {
-      console.log(e);
       if (e.ctrlKey && e.keyCode == KEYS_CODE['1']) changeColor(colors[0]);
       if (e.ctrlKey && e.keyCode == KEYS_CODE['2']) changeColor(colors[1]);
       if (e.ctrlKey && e.keyCode == KEYS_CODE['3']) changeColor(colors[2]);
