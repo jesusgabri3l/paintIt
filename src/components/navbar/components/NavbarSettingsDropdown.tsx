@@ -1,16 +1,11 @@
 import { BlockPicker } from 'react-color';
 import { connect } from 'react-redux';
+import Swal from 'sweetalert2';
 
 import { useShortcuts } from '../../../shortcuts/useShortcutsSettings';
 import { colors } from '../../shared/colors';
-interface Props {
-  active: boolean;
-  changeColor: any;
-  clearAction: any;
-  decrementLineWidth: any;
-  incrementLineWidth: any;
-  settings: any;
-}
+import { Props } from '../models/DropdownProps';
+
 function NavbarSettingsDropdown({
   active,
   changeColor,
@@ -20,6 +15,35 @@ function NavbarSettingsDropdown({
   settings,
 }: Props) {
   useShortcuts({ decrementLineWidth, incrementLineWidth });
+  const onClickClearButtonHandler = () => {
+    Swal.fire({
+      title: 'Are you sure? 🤔',
+      text: 'Are you sure you want to clear the board?, there is no going back',
+      icon: 'warning',
+      confirmButtonText: 'Clear',
+      confirmButtonColor: '#1ed760',
+      showCancelButton: true,
+      cancelButtonText: 'Cancel',
+      cancelButtonColor: '#E74C3C',
+      background: '#181818',
+      color: '#b3b3b3',
+      iconColor: '#fff',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        clearAction();
+        Swal.fire({
+          title: 'Board clear ✅',
+          icon: 'success',
+          showConfirmButton: false,
+          background: '#181818',
+          color: '#b3b3b3',
+          iconColor: '#fff',
+          timer: 1000,
+          timerProgressBar: true,
+        });
+      }
+    });
+  };
   return (
     <div className={`navbar__settings__dropdown ${active && 'active'}`}>
       <div className="navbar__settings__dropdown__width">
@@ -57,7 +81,10 @@ function NavbarSettingsDropdown({
         </div>
       </div>
       <hr className="mt-6 mb-6" />
-      <button className="button button--danger mt-4" onClick={() => clearAction()}>
+      <button
+        className="button button--danger mt-4"
+        onClick={() => onClickClearButtonHandler()}
+      >
         <i className="fa fa-eraser mr-2" />
         Clean canvas
       </button>
