@@ -2,9 +2,10 @@ import { createRef, useEffect } from 'react';
 import CanvasDraw from 'react-canvas-draw';
 import { connect } from 'react-redux';
 
-import { Props } from './applications/Props';
 import { useCanvasActions } from './applications/useCanvasActions';
+import { useCanvasLoadFromStorage } from './applications/useCanvasLoadFromStorage';
 import { useCanvasSize } from './applications/useCanvasSize';
+import { Props } from './models/Props';
 
 function Canvas({
   settings,
@@ -12,27 +13,29 @@ function Canvas({
   //When on change the canvas
   saveCanvasSource,
 }: Props) {
+  // Custom hooks for logical
   const { height, width } = useCanvasSize();
   const canvasRef = createRef<CanvasDraw>();
-  const { downloadCanvasAction, saveCanvasAction, dataSaved } = useCanvasActions(
+  const { downloadCanvasAction, saveCanvasToLocalStorageAction } = useCanvasActions(
     canvasStore.name,
   );
-  const canvasOnChange = () => saveCanvasSource(canvasRef.current?.getSaveData());
-
+  const { canvasSaved } = useCanvasLoadFromStorage();
+  // For handling canvasChange
+  const canvasOnChange = () => {
+    saveCanvasSource(canvasRef.current?.getSaveData());
+    saveCanvasToLocalStorageAction(canvasRef);
+  };
+  // For handling the action triggered
   useEffect(() => {
     switch (canvasStore.action.type) {
       case 'undo':
         canvasRef.current?.undo();
-        break;
-      case 'save':
-        saveCanvasAction(canvasRef);
         break;
       case 'download':
         downloadCanvasAction(canvasRef);
         break;
       case 'clear':
         canvasRef.current?.clear();
-        saveCanvasAction(canvasRef);
         break;
       default:
         return;
@@ -51,7 +54,7 @@ function Canvas({
         catenaryColor={settings.color}
         brushRadius={settings.lineWidth}
         onChange={() => canvasOnChange()}
-        saveData={dataSaved}
+        saveData={canvasSaved}
         immediateLoading
       />
     </div>

@@ -1,4 +1,6 @@
 import './index.css';
+import 'react-toastify/dist/ReactToastify.css';
+import 'sweetalert2/src/sweetalert2.scss';
 
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
