@@ -2,8 +2,8 @@ import { BlockPicker } from 'react-color';
 import { connect } from 'react-redux';
 import Swal from 'sweetalert2';
 
-import { useShortcuts } from '../../../shortcuts/useShortcutsSettings';
-import { colors } from '../../shared/colors';
+import { colors } from '../../../config/colors/colors';
+import { useShortcuts } from '../../../config/shortcuts/useShortcutsSettings';
 import { Props } from '../models/DropdownProps';
 
 function NavbarSettingsDropdown({

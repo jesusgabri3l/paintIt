@@ -1,4 +1,4 @@
-import { colors } from '../../components/shared/colors';
+import { colors } from '../../config/colors/colors';
 const initState = { lineWidth: 1, color: colors[0] };
 
 export default function SettingsReducer(state = initState, action: any) {

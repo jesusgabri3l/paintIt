@@ -1,8 +1,8 @@
 import { CirclePicker } from 'react-color';
 import { connect } from 'react-redux';
 
-import { useShortcutsColors } from '../../shortcuts/useShortcutsColors';
-import { colors } from '../shared/colors';
+import { colors } from '../../config/colors/colors';
+import { useShortcutsColors } from '../../config/shortcuts/useShortcutsColors';
 function ColorsBottom({ settingsStore, changeColor }: any) {
   useShortcutsColors({ changeColor });
   return (

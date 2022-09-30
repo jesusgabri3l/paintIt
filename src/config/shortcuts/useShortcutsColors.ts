@@ -10,7 +10,7 @@ const KEYS_CODE = {
   8: 56,
   9: 57,
 };
-import { colors } from '../components/shared/colors';
+import { colors } from '../colors/colors';
 export const useShortcutsColors = ({ changeColor }: any) => {
   useLayoutEffect(() => {
     document.body.addEventListener('keydown', (event) => {

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { useShortcuts } from '../../../shortcuts/useShortcutsActions';
+import { useShortcuts } from '../../../config/shortcuts/useShortcutsActions';
 
 function NavbarActions({
   undoAction,
