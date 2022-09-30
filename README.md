@@ -10,12 +10,12 @@ PaintIt is a ready to use, easy to use and a simple white-board; it is mainly th
 - Download action
 - Change your canvas name (this is how the file is called in case you wanna download it)
 
-## Key shortcuts
+## Keyboard shortcuts
 
 - `ctrl` + `z` = Undo action
 - `ctrl` + `+` = Increment line width
 - `ctrl` + `-` = Decrement line width
-- `ctrl` +  `(1 - 9)`= Each number has its own color, which you can access by this shortcuts
+- `ctrl` + `(1 - 9)`= Each number has its own color, which you can access by this shortcuts
 
 ## Tech
 
@@ -43,7 +43,7 @@ Install the dependencies and devDependencies and start the server.
 **Ask for the .env in case you wanna run it locally**
 
 ```sh
-cd weather-app
+cd paintIt
 npm i
 npm run dev
 ```
