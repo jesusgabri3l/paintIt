@@ -36,6 +36,7 @@ function Canvas({
         break;
       case 'clear':
         canvasRef.current?.clear();
+        canvasOnChange();
         break;
       default:
         return;

@@ -15,7 +15,7 @@ function NavbarSettingsDropdown({
   settings,
 }: Props) {
   useShortcuts({ decrementLineWidth, incrementLineWidth });
-  const { onClickClearButtonHandler } = useClearCanvas(clearAction);
+  const { onClickClearButtonHandler } = useClearCanvas({ clearAction });
   return (
     <div className={`navbar__settings__dropdown ${active && 'active'}`}>
       <div className="navbar__settings__dropdown__width">
