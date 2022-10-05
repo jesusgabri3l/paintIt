@@ -15,11 +15,11 @@ function Canvas({
 }: Props) {
   // Custom hooks for logical
   const { height, width } = useCanvasSize();
-  const canvasRef = createRef<CanvasDraw>();
   const { downloadCanvasAction, saveCanvasToLocalStorageAction } = useCanvasActions(
     canvasStore.name,
   );
   const { canvasSaved } = useCanvasLoadFromStorage();
+  const canvasRef = createRef<CanvasDraw>();
   // For handling canvasChange
   const canvasOnChange = () => {
     saveCanvasSource(canvasRef.current?.getSaveData());
