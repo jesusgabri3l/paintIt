@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 
 import { useShortcuts } from '../../../config/shortcuts/useShortcutsActions';
+import NavbarInfo from './NavbarInfo';
 
 function NavbarActions({
   undoAction,
@@ -12,6 +13,7 @@ function NavbarActions({
   useShortcuts({ undoAction });
   return (
     <div className="navbar__actions">
+      <NavbarInfo />
       <button className="navbar__button" onClick={() => undoAction()}>
         <i className="fa fa-undo navbar__button__icon" />
       </button>

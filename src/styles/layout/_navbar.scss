@@ -19,6 +19,7 @@
         &__button{
             outline: none;
             border: none;
+            cursor: pointer;
             &__icon{
                 color: $GRAY-COLOR;
                 font-size: 28px;
@@ -26,7 +27,7 @@
                 &.active{
                     transform: rotate(45deg);
                 }
-            }       
+            }
         }
         &__dropdown{
             height: 500px;
@@ -74,6 +75,7 @@
             margin-left: 20px;
             color: $GRAY-COLOR;
             font-size: 20px;
+            cursor: pointer;
         }
         &__text{
            @include title;
@@ -83,10 +85,62 @@
         color: $GRAY-COLOR;
         font-size: 28px;
         display: flex;
+        align-items: center;
         gap: 30px;
     }
     &__button{
         outline: none;
         border: none;
+        cursor: pointer;
+    }
+    &__info{
+        &__button{
+            outline: none;
+            border: none;
+            cursor: pointer;
+            &__icon{
+                color: $GRAY-COLOR;
+                font-size: 24px;
+                transition: all 0.4s;
+                &.active{
+                    color: $WHITE-COLOR;
+                }
+            }
+        }
+        &__dropdown{
+            width: 260px;
+            border-radius: 5px;
+            padding: 20px 24px;
+            position: absolute;
+            background: $BACKGROUND-COLOR;
+            right: 0;
+            top: 50px;
+            z-index: 1;
+            transition: all 0.4s;
+            visibility: hidden;
+            opacity: 0.2;
+            pointer-events: none;
+            box-shadow: 0 3px 6px rgba(0,0,0, .25);
+            &.active{
+                visibility: visible;
+                pointer-events: all;
+                opacity: 1;
+                top: 45px;
+            }
+            &__title{
+                margin: 0 0 10px;
+                color: $WHITE-COLOR;
+                font-size: 14px;
+                font-weight: 700;
+            }
+            &__list{
+                margin: 0;
+                padding-left: 18px;
+                list-style: disc;
+                color: $GRAY-COLOR;
+                font-size: 13px;
+                line-height: 1.6;
+            }
+        }
     }
 }
