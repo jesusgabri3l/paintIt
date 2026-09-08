@@ -1,7 +1,7 @@
 export const useCanvasActions = (canvasName: string) => {
   const downloadCanvasAction = (canvasRef: any) => {
     const link = document.createElement('a');
-    link.href = canvasRef.current?.getDataURL('jpg');
+    link.href = canvasRef.current?.getDataURL('jpg', false, '#FFFFFF');
     link.download = `${canvasName}.png`;
     link.click();
   };

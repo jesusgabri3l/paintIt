@@ -1,5 +1,6 @@
-import { createRef, useEffect } from 'react';
-import CanvasDraw from 'react-canvas-draw';
+import { useEffect, useRef } from 'react';
+import CanvasDraw from '@sacru2red/react-canvas-draw';
+import type { CanvasDrawApi } from '@sacru2red/react-canvas-draw';
 import { connect } from 'react-redux';
 
 import { useCanvasActions } from './applications/useCanvasActions';
@@ -19,7 +20,7 @@ function Canvas({
     canvasStore.name,
   );
   const { canvasSaved } = useCanvasLoadFromStorage();
-  const canvasRef = createRef<CanvasDraw>();
+  const canvasRef = useRef<CanvasDrawApi>(null);
   // For handling canvasChange
   const canvasOnChange = () => {
     saveCanvasSource(canvasRef.current?.getSaveData());

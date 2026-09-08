@@ -21,7 +21,6 @@ function NavbarName({ canvasStore, saveNameActionStore }: any) {
             onChange={(e) => setValueName(e.target.value)}
             onKeyDown={(e) => onEnterPressed(e)}
             maxLength={15}
-            // eslint-disable-next-line jsx-a11y/no-autofocus
             autoFocus
           />
           <button className="navbar__title__button" onClick={() => saveNameHandler()}>

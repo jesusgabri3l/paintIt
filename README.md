@@ -19,7 +19,7 @@ PaintIt is a ready to use, easy to use and a simple white-board; it is mainly th
 
 ## Tech
 
-- [React18](https://reactjs.org/)
+- [React19](https://reactjs.org/)
 - [Classic Redux](https://react-redux.js.org/)
 - [Vite](https://vitejs.dev/guide/why.html)
 - [Tailwind](https://markus.oberlehner.net/blog/vue-project-directory-structure-keep-it-flat-or-group-by-domain/)
